@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
+    <link rel ="stylesheet" href="/pagination.css"/>
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous" ></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="/employee.css" />
+    
+    <script src="/localStorageUtility.js"></script>
+    <script src="/employee.js"></script>
+    <script src="/common.js"></script>
+   <script src="/sweetalert.min.js"></script>
+   <script src="pagination.js"></script>
+
+    <title>Employee</title>
+  </head>
+  <body>
+    <nav class="navbar bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand"> Employee </a>
+        <div class="mx-auto">
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" id="search" type="search" placeholder="Search" aria-label="Search" />
+            <button class="btn btn-light" type="submit"> <i class="fa-solid fa-magnifying-glass"></i> </button>
+          </form>
+        </div>
+        <div>
+          <button type="button" class="btn btn-success openDialog" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="fa-solid fa-circle-plus"></i> Add New Employee </button>
+           <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel"> Add Employee </h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col">
+                      <label for="firstname">First name</label></div>
+                    <div class="col">
+                      <input type="text" class="form-control" id="firstname" />
+                      <input type="hidden" class="form-control" id="txtId" />
+                    </div>
+
+                    <div class="col">
+                      <label for="lastname">Last Name</label></div>
+                    <div class="col">
+                      <input type="text" class="form-control" id="lastname" />
+                    </div>
+                  </div>
+                  <br/>
+
+                  <div class="row">
+                    <div class="col">
+                      <label for="email">Email</label>
+                    </div>
+                    <div class="col">
+                      <input type="email" class="form-control" id="email" />
+                    </div>
+
+                    <div class="col">
+                      <label for="gender">Gender</label>
+                    </div>
+                    <div class="col">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input gender" type="radio" name="inlineRadioOptions"  id="male" value="Male"/>
+                        <label class="form-check-label" for="inlineRadio1" >Male</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input gender" type="radio" name="inlineRadioOptions" id="female" value="Female"/>
+                        <label class="form-check-label" for="inlineRadio2">Female</label>
+                      </div>
+                    </div>
+                  </div>
+                  <br />
+
+                  <div class="row">
+                    <div class="col">
+                      <label for="DOB">DOB</label>
+                    </div>
+                   <div class="col">
+                      <input type="date" class="form-control" id="DOB" />
+                    </div>
+
+                    <div class="col">
+                      <label for="joiningdate">Joining Date</label>
+                    </div>
+                    <div class="col">
+                      <input type="date"  class="form-control" id="joiningDate" />
+                    </div>
+                  </div>
+                  <br/>
+
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <label for="Designation">Designation</label>
+                    </div>
+                    <div class="col-sm-3">
+                      <select class="form-select" aria-label="Default select example" id="Designation">
+                        <option selected>Select</option>
+                        <option value="Jr.Developer">Jr.Developer</option>
+                        <option value="Sr.Developer">Sr.Developer</option>
+                        <option value="Project Manager">Project Manager</option>
+                      </select>
+                    </div>
+
+                    <div class="col">
+                      <div class="custom-file">
+                        <label class="custom-file-label" for="imageinput">Upload Profile Image</label>
+                        <input type="file" class="imageinput" id="imageinput" />
+                        <img id="imagepreview" />
+                      </div>
+                    </div>
+                  </div>
+                  <br/>
+
+                  <div class="row">
+                    <div class="col">
+                      <label for="skill">Skill</label>
+                    </div>
+
+                    <div class="col">
+                      <input type="text" class="form-control" id="skill" />
+                      <ol id="box"></ol>
+                    </div>
+
+                    <div class="col-sm-1">
+                      <button type="button" class="btn btn-outline-dark add-button" value="Add" id="addskill"> ADD </button>
+                      <span id="error"></span>
+                    </div>
+
+                    <div class="col-sm-5">
+                      <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea  class="form-control" id="description" rows="3"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary" id="save"> Save </button>
+                  <button type="close" class="btn btn-secondary" id="btnClose"> Close </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <table class="table table-bordered" id="tblData">
+            <thead>
+              <tr>
+                <th scope="col">Sr no</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Designation</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+   
+  </body>
+</html>

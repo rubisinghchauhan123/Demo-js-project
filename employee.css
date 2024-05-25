@@ -1,0 +1,33 @@
+
+.navbar-brand{
+    color:rgba(17, 18, 17, 0.89);
+    font-size: xx-large;
+    font-weight: 800px;
+    font-family: 'Times New Roman', Times, serif;
+    
+}
+.btn-outline-succes{
+    margin:100px;
+}
+
+#imagepreview{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 300px;
+    height: 100px;
+}
+
+.container-fluid{
+    color: rgb(214, 198, 230);
+     width: 100%;  
+    height: auto
+}
+
+.exampleModalLabel{
+    color: blueviolet;
+}
+
+.child{
+    display: none;
+}
